@@ -21,6 +21,7 @@ PASSWORD = config['pass']
 
 try:
     CLIENT_ID = config['cid']
+    print 'Client ID was provided, retrieving all datasources'
 except KeyError:
     CLIENT_ID = None
     print 'No Client ID provided, retrieving all datasources'
@@ -53,6 +54,7 @@ else:
 pprint(req)
 ds = req['data']['datasources']
 
+print 'Enabling and Refreshing Datasources ...'
 for i in ds:
     _id = i['id']
     data = get('/datasources/'+_id+'?full=true')['data']
@@ -69,6 +71,6 @@ for i in ds:
             t.sleep(0.01)        
         
 end = current_milli_time()
-
 delta = (end - start)/1000
+print '... Done!'
 print "Script took " + str(delta) + " seconds"
