@@ -1,4 +1,4 @@
-# enableds - Re-enable and refresh all datasources # 
+# enableds - Re-enable and refresh all datasources # - Refreshed only failed datasources.
 
 ## Running the script ##
 

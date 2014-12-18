@@ -15,9 +15,9 @@ current_milli_time = lambda: int(round(t.time() * 1000))
 
 start = current_milli_time()
 
-HOST = 'https://app.klipfolio.com/api/1'
-USERNAME = config['user']
-PASSWORD = config['pass']
+HOST = 'https://test-app.klipfolio.com/api/1'
+USERNAME = 'susmani@klipfolio.com'##config['user']
+PASSWORD = 'samusm12'##config['pass']
 
 try:
     CLIENT_ID = config['cid']
@@ -57,18 +57,22 @@ ds = req['data']['datasources']
 print 'Enabling and Refreshing Datasources ...'
 for i in ds:
     _id = i['id']
-    data = get('/datasources/'+_id+'?full=true')['data']
-    if data['is_dynamic'] == False:
-        #print 'pseudo refresh ds'
-        post('/datasources/'+_id+'/@/enable')
-        post('/datasources/'+_id+'/@/refresh')
-        t.sleep(0.01)
-    else:
-        ds_instances = get('/datasource-instances?datasource_id='+_id)['data']['instances']
-        for j in ds_instances:
-            #print 'pseudo delete instance'
-            delete('/datasource-instances/'+j['id'])
-            t.sleep(0.01)        
+    data = get('/datasources/'+_id+'?full=true')
+    if (data['meta']['success'] == True):
+        data = data['data']
+        pprint(data)
+        if data['is_dynamic'] == True:
+            #print 'pseudo refresh ds'
+##            post('/datasources/'+_id+'/@/enable')
+##            post('/datasources/'+_id+'/@/refresh')
+            t.sleep(0.01)
+        else:
+            ds_instances = get('/datasource-instances?datasource_id='+_id)['data']['instances']
+            for j in ds_instances:
+                pprint(j)
+                #print 'pseudo delete instance'
+##                delete('/datasource-instances/'+j['id'])
+                t.sleep(0.01)        
         
 end = current_milli_time()
 delta = (end - start)/1000
