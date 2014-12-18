@@ -2,7 +2,7 @@
 
 ## Running the script ##
 
-- Download [enableds.zip](https://github.com/sameid/enableds/raw/master/dist/enableds.zip)
+- Download [enableds.zip](https://github.com/sameid/enableds/raw/refresh_only_failed/dist/enableds.zip)
 - Extract the files from the enableds.zip 
 - Edit the config.json 
 
